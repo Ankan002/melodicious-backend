@@ -6,13 +6,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        maxlength: 40
+        maxlength: 100
     },
     username: {
         type: String,
         required: true,
         unique: true,
-        trim: true
+        trim: true,
+        maxlength: 40
     },
     providerId: {
         type: String,
