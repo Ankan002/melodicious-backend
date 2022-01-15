@@ -3,6 +3,8 @@ const express = require('express')
 const cors = require('cors')
 const fileUpload = require('express-fileupload')
 const connectToDB = require('./config/dbConnect')
+const authRoutes = require('./routes/auth')
+const userRoutes = require('./routes/user')
 
 const startServer = async() => {
     const app = express()
@@ -18,6 +20,9 @@ const startServer = async() => {
     app.get('/', (req, res) => {
         res.json('Welcome to the Melodicious API')
     })
+
+    app.use('/api', authRoutes)
+    app.use('/api', userRoutes)
 
     app.listen(PORT, () => console.log(`App is running`))
 }
