@@ -51,7 +51,7 @@ exports.updateUsername = async(req, res) => {
     if(username.length >= 4  && (username.substring(username.length - 4)) === '_gal'){
         return res.status(200).json({
             success: false,
-            message: 'Username should not conatain "_gal" at the end'
+            message: 'Username should not contain "_gal" at the end'
         })
     }
 
