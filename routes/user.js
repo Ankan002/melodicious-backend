@@ -3,6 +3,7 @@ const router = express.Router()
 const {fetchUser} = require('../middlewares/fetchUser') 
 const {getUser, getUserById, updateUsername} = require('../controllers/user')
 const {body} = require('express-validator')
+const {follow,  unfollow} = require('../controllers/follow')
 
 //A route to get the user by the jwt access token. Certain super powers are given to this user. You need to be logged in to do so
 router.get('/user', fetchUser, getUser)
@@ -14,6 +15,12 @@ router.get('/user/:userId', fetchUser, getUserById)
 router.put('/user/username', fetchUser, [
     body('username').isLength({min: 1, max: 40}).withMessage('The username must be at least 1 character and at most 40 characters long')
 ], updateUsername)
+
+//A route to follow an user. It requires that user to be logged in.
+router.put('/user/follow', fetchUser, follow)
+
+//A route to unfollow an user. It requires that user to be logged in.
+router.put('/user/unfollow', fetchUser, unfollow) 
 
 
 module.exports = router
