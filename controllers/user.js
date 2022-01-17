@@ -7,7 +7,7 @@ exports.getUser = async(req, res) => {
 
     //TODO: Populate the get songs field as well once Song field is registered in the DataBase 
     try{
-        const user = await User.findById(userId).populate('followers').populate('following').exec()
+        const user = await User.findById(userId).populate('followers', '-liked_songs -followers -following').populate('following', '-liked_songs -followers -following').exec()
 
         res.status(200).json({
             success: true,
@@ -28,7 +28,7 @@ exports.getUserById = async(req, res) => {
     const userId = req.params.userId
     
     try{
-        const user = await User.findById(userId).populate('followers').populate('following').select('-liked_songs').exec()
+        const user = await User.findById(userId).populate('followers', '-liked_songs -followers -following').populate('following', '-liked_songs -followers -following').exec()
 
         res.status(200).json({
             success: true,
