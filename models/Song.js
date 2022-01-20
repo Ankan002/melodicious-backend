@@ -32,6 +32,6 @@ const songSchema = new mongoose.Schema({
         ref: 'User',
         default: []
     }
-})
+}, {timestamps: true})
 
 module.exports = mongoose.model('Song', songSchema)
