@@ -71,7 +71,7 @@ exports.updateUsername = async(req, res) => {
 
         if(username) newUser.username = username
 
-        const user =  await User.findByIdAndUpdate(userId, {$set: newUser}, {new: true})
+        const user =  await User.findByIdAndUpdate(userId, {$set: newUser}, {new: true}).select('-liked_songs').select('-followers').select('-following')
 
         res.status(200).json({
             success: true,
